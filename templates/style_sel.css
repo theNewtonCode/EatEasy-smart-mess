@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('./bueateasy.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+body-bg{
+    opacity: 0.5;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    list-style: none;
+    margin-left: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #ff69b4;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 50px;
+    padding-top: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .form-container h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+ button
+  {
+    height: 30px;
+    background-color: rgb(225, 56, 90);
+    color: white;
+    /* font-weight: 500; */
+    font-size: larger;
+    border-radius: 30px;
+  }
+  input[type=number], select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    /* border: none;}   */
+  }

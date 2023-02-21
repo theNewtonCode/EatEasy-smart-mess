@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EatEasy - Find a Table</title>
+    <link rel="stylesheet" type="text/css" href="style_sel.css">
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="logo.png" alt="EatEasy Logo">
+        <h1>EatEasy</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav>
+    
+    <div class="container">
+      <div class="form-container">
+        <h2>Let's Find...</h2>
+        <form>
+            <button class="btn-counter" type="submit">Find Counter</button><br>
+          <label for="num-people">Number of People:</label>
+          <input type="number" id="num-people" name="num-people" placeholder="Enter number of people">
+          
+          <label for="table-pref">Table Preference:</label>
+          <select id="table-pref" name="table-pref">
+            <option value="none">None</option>
+            <option value="window">Window</option>
+            <option value="outdoor">Outdoor</option>
+            <option value="private">Private</option>
+          </select>
+          
+          <button class="btn-find" type="submit">Find Table</button>
+        </form>
+      </div>
+    </div>
+    
+  </body>
+</html>

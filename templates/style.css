@@ -7,26 +7,33 @@ body {
   .container {
     display: flex;
     flex-direction: row;
+    /* height: 100vh; */ /* Remove this line */
   }
   
   .left {
     width: 50%;
     padding: 50px;
+    padding-top: 20vh;
+    display: flex;
+    /* align-items: center; */
   }
   
   .right {
     width: 50%;
     padding: 50px;
-    background-color: rgb(250, 69, 112);;
+    background-color: rgb(250, 69, 112);
+    display: flex;
+    justify-content: center;
   }
   
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    /* background-image: linear-gradient(to right, #ffffff, #e3feff, #a5ffff, #8dffe2, #c6ff91); */
   }
   
   .logo {
@@ -66,7 +73,7 @@ body {
   
   .intro h2 {
     font-size: 36px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .intro p {
@@ -93,10 +100,15 @@ body {
   }
   
   .btn-find:hover {
-    background-color: rgb(250, 69, 112);;
+    background-color: rgb(125, 255, 60);
+  }
+  .btn-messmap:hover{
+    color: rgb(125, 255, 60);
+    border-color: rgb(125, 255, 60);
+
   }
   
-  .btn-learn {
+  .btn-messmap {
     text-decoration: none;
     width: 120px;
     background-color: #fff;
@@ -108,4 +120,54 @@ body {
     transition: background-color 0.3s ease;
     border: 2px solid #ff6996;
   }
+
+  /* Small screens */
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  nav{
+    width: 100vw;
+    padding: 10px 20px;
+  }
+  .left, .right {
+    width: 100%;
+    padding: 20px;
+  }
+  .left{
+    display: flex;
+    justify-content: center;
+  }
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+  .intro h2 {
+    font-size: 24px;
+  }
+  .intro p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-find, .btn-messmap {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/* Medium screens */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .left {
+    padding: 20px;
+    padding-top: 10vh;
+  }
+  .right {
+    padding: 20px;
+  }
+}
+
   

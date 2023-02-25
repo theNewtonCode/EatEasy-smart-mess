@@ -6,17 +6,16 @@ body {
     background-size: cover;
     background-attachment: fixed;
   }
-body-bg{
-    opacity: 0.5;
-  }
   
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    /* background-image: linear-gradient(to right, #ffffff, #e3feff, #a5ffff, #8dffe2, #c6ff91); */
+
   }
   
   .logo {
@@ -83,12 +82,17 @@ body-bg{
  button
   {
     height: 30px;
-    background-color: rgb(225, 56, 90);
+    background-color: rgb(250, 69, 112);
     color: white;
     /* font-weight: 500; */
     font-size: larger;
     border-radius: 30px;
+    border: none;
+    height: 40px;
   }
+button:hover{
+    background-color: rgb(125, 255, 60);
+}
   input[type=number], select {
     padding: 10px;
     margin-bottom: 20px;

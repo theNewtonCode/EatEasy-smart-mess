@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    /* background-image: linear-gradient(to right, #ffffff, #e3feff, #a5ffff, #8dffe2, #c6ff91); */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    list-style: none;
+    margin-left: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: rgb(250, 69, 112);
+  }
+
+  /* Main Part */
+
+  main{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 1rem;
+  }
+
+ main h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 36px;
+    /* color: #007bff; */
+    text-shadow: 2px 2px #ccc;
+  }
+  
+  main h2 {
+    margin-top: 30px;
+      font-size: 24px;
+      /* color: #007bff; */
+      text-shadow: 1px 1px #ccc;
+  }
+  
+  main ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  main li {
+    margin-top: 10px;
+      font-size: 18px;
+  }
+  
+  main a {
+    /* color: #007bff; */
+    text-decoration: none;
+    border-bottom: 1px dotted #ccc;
+    transition: all 0.2s ease-in-out;
+  }
+
+  main a:hover {
+    /* color: #0056b3; */
+      border-bottom: 1px dotted #007bff;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #ccc;
+  }
+
+  .section {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+ 
+  

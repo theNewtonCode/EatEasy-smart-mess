@@ -1,0 +1,38 @@
+{% extends "base.html" %} 
+
+{% block head %}
+<title>EatEasy - Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='style.css')}}"
+/>
+{% endblock %} 
+
+{% block body %}
+<div class="container">
+  <div class="left">
+    <main>
+      <div class="intro">
+        <h2>Welcome to EatEasy!</h2>
+        <p>
+          Find the most suitable place for you and your gang with just a click
+        </p>
+        <div class="buttons">
+          <a href="{{ url_for('select') }}" class="btn-find">Find</a>
+          <a href="{{ url_for('map') }}" class="btn-messmap">View Map</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="right">
+    <div class="picture">
+      <img
+        src="{{url_for('static', filename='img/dine_icon.png')}}"
+        alt="Food Picture"
+      />
+    </div>
+  </div>
+</div>
+{% endblock %}

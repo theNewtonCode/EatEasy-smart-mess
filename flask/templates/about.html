@@ -1,0 +1,47 @@
+{% extends "base.html" %} 
+
+{% block head %}
+
+<title>EatEasy - About Us</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='about.css')}}"
+/>
+{% endblock %}
+
+
+{% block body %}
+<header>
+  <h1>About Us</h1>
+</header>
+<main>
+  <h2>Who We Are</h2>
+  <p>We are a team of Budding Developers Who want to solve real World problems with our skills.</p>
+  
+  <h2>Our Mission</h2>
+  <p>Our mission is to help solve overcrowding issue in Mess</p>
+  
+  <h2>Our Services</h2>
+  <ul>
+    <li>Coming Soon!!!</li>
+    <li>Coming Soon!!!</li>
+    <li>Coming Soon!!!</li>
+  </ul>
+  
+  <h2>Meet Our Team</h2>
+  <p>Here are the talented individuals who make up our team:</p>
+  
+  <ul>
+    <li>Abhuday Rai - CEO</li>
+    <li>Vaibhav Tiwari - COO</li>
+    <li>Aditya Ghuraiya - CFO</li>
+    <li>Vanshagra Rai - CMO</li>
+  </ul>
+</main>
+
+<footer>
+  <p class="footer-text">&copy; 2023 EatEasy. All rights reserved.</p>
+</footer>
+
+{% endblock %}

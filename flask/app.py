@@ -9,8 +9,8 @@ app.secret_key = 'eateasysmart2023'
 
 @app.route("/")
 def index(name=None):
-    if 'username' in session:
-        return render_template('index.html', name=session['username'])
+    if 'username' in session and 'name' in session:
+        return render_template('index.html', name=session['name'])
     else:
         return redirect(url_for('loginpage'))
 
@@ -42,7 +42,7 @@ def map(name=None):
         return redirect(url_for('loginpage'))
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///eateasydb.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///eateasydata.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -50,6 +50,7 @@ db = SQLAlchemy(app)
 class userdata(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(12), unique=True, nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     rating = db.Column(db.Integer, nullable=False, default=0)
 
@@ -71,6 +72,7 @@ def loginpage():
         if user and check_password_hash(user.password, password):
             log_in = True
             session['username'] = username
+            session['name'] = user.name
         else:
             print("wrong credentials")
                 
@@ -82,6 +84,7 @@ def signup():
     signup = True
     data = {}
     if request.method =='POST':
+        name = request.form['name']
         username = request.form['username']
         password = request.form['password']
         save_password = request.form.get('save_password')
@@ -91,13 +94,13 @@ def signup():
             signup = False
         else:
             password_hash = generate_password_hash(password)
-            user = userdata(username=username, password=password_hash)
+            user = userdata(name=name, username=username, password=password_hash)
             if save_password:
                 user.password = password
             db.session.add(user)
             db.session.commit()
-            data = {"username": username, "signup":signup}
-            return render_template('login.html', data=data)
+            data = {"username": username, "name": name, "signup": signup}
+            return redirect(url_for('loginpage'))
     return render_template('signup.html', data=data)
 
 @app.route("/userfeedback", methods=['GET', 'POST'])

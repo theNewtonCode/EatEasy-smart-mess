@@ -1,21 +1,72 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Sign Up Page</title>
-    </head>
-    <body>
-        <h1>Sign Up</h1>
-        {% if data["error"] %}
-        <p style="color: red;">{{ data["error"] }}</p>
-        {% endif %}
-        <form method="POST">
-            <label>Username:</label>
-            <input type="text" name="username"><br>
-            <label>Password:</label>
-            <input type="password" name="password"><br>
-            <label>Confirm Password:</label>
-            <input type="password" name="confirm_password"><br>
-            <input type="submit" value="Sign up">
-        </form>
-    </body>
+  <head>
+    <title>Sign Up Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body{
+  background: linear-gradient(rgb(228, 96, 118) 70%, transparent 30%) no-repeat;
+}
+      
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);
+        max-width: 500px;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .btn-primary {
+        background-color: rgb(228, 96, 118);
+        border-color:  rgb(228, 96, 118);
+      }
+      
+      .btn-primary:hover {
+        background-color: rgb(121, 7, 26);
+        border-color: rgb(121, 7, 26);
+      }
+      
+      .icon {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        z-index: 0;
+        height: 200px;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="mb-4">Sign Up</h1>
+      {% if data["error"] %}
+      <p class="text-danger">{{ data["error"] }}</p>
+      {% endif %}
+      <form method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm Password:</label>
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+    </div>
+    <img class="icon" src="{{url_for('static', filename='img/logo_eateasy.png')}}" alt="Icon">
+  </body>
 </html>

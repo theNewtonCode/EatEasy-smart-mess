@@ -15,7 +15,11 @@
   <div class="left">
     <main>
       <div class="intro">
-        <h2>Welcome to EatEasy!</h2>
+        {% if name %}
+  <h2>Welcome, {{ name }}!</h2>
+{% else %}
+  <h2>Welcome to EatEasy!</h2>
+{% endif %}
         <p>
           Find the most suitable place for you and your gang with just a click
         </p>

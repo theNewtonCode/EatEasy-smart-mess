@@ -9,6 +9,45 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Feedback</title>
+    <style>
+      body{
+        position: relative;
+        min-height: 100vh;
+  background: linear-gradient(rgb(228, 96, 118) 50%, transparent 50%) no-repeat;
+}
+
+      .star {
+        font-size: 3em;
+        color: #f9d71c;
+        cursor: pointer;
+      }
+      .star:hover {
+        color: #ffd700;
+      }
+      label{
+        font-size: x-large;
+      }
+      .btn-primary {
+        background-color: rgb(125, 255, 60);
+        border-color:  rgb(125, 255, 60);
+        box-shadow: 0px 0px 10px rgb(83, 83, 83);
+      }
+      
+      .btn-primary:hover {
+        background-color: rgb(32, 72, 12);
+        border-color: rgb(32, 72, 12);
+      }
+    
+      .icon {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        z-index: 0;
+        height: 200px;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -16,23 +55,34 @@
       <form action="{{ url_for('userfeedback') }}" method="POST">
         <div class="form-group">
           <label for="rating">Rating:</label>
-          <select class="form-control" id="rating" name="rating">
-            <option value="0">0 Stars</option>
-            <option value="1">1 Star</option>
-            <option value="2">2 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="5">5 Stars</option>
-          </select>
+          <div class="star-rating">
+            <i class="star fas fa-star" data-value="1"></i>
+            <i class="star fas fa-star" data-value="2"></i>
+            <i class="star fas fa-star" data-value="3"></i>
+            <i class="star fas fa-star" data-value="4"></i>
+            <i class="star fas fa-star" data-value="5"></i>
+            <input type="hidden" name="rating" id="rating" value="0">
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-
+    <img class="icon" src="{{url_for('static', filename='img/logo_eateasy.png')}}" alt="Icon">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/esm/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <script>
+      $('.star').click(function(){
+        var value = $(this).data('value');
+        $('#rating').val(value);
+        $('.star').removeClass('fas').addClass('far');
+        for(var i=1; i<=value; i++){
+          $('.star:nth-child('+i+')').removeClass('far').addClass('fas');
+        }
+      });
+    </script>
+
   </body>
 </html>

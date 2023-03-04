@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Sign Up Page</title>
+    </head>
+    <body>
+        <h1>Sign Up</h1>
+        {% if data["error"] %}
+        <p style="color: red;">{{ data["error"] }}</p>
+        {% endif %}
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username"><br>
+            <label>Password:</label>
+            <input type="password" name="password"><br>
+            <label>Confirm Password:</label>
+            <input type="password" name="confirm_password"><br>
+            <input type="submit" value="Sign up">
+        </form>
+    </body>
+</html>

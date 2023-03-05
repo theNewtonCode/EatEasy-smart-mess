@@ -1,3 +1,5 @@
+from random import randint
+import smtplib
 from flask import Flask,render_template, session, redirect, url_for, flash
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
@@ -42,7 +44,7 @@ def map():
         return redirect(url_for('loginpage'))
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///eateasydata.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///eateasyusers.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -51,11 +53,12 @@ class userdata(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(12), unique=True, nullable=False)
     name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     rating = db.Column(db.Integer, nullable=False, default=0)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.route("/loginpage", methods=['GET', 'POST'])
 def loginpage():
@@ -89,6 +92,7 @@ def signup():
     if request.method =='POST':
         name = request.form['name']
         username = request.form['username'].upper()
+        email = request.form['email'].lower()
         password = request.form['password']
         save_password = request.form.get('save_password')
         if not (10 <= len(username) <= 12):
@@ -97,7 +101,7 @@ def signup():
             signup = False
         else:
             password_hash = generate_password_hash(password)
-            user = userdata(name=name, username=username, password=password_hash)
+            user = userdata(name=name, username=username, email=email, password=password_hash)
             if save_password:
                 user.password = password
             db.session.add(user)
@@ -124,6 +128,80 @@ def userfeedback():
 def logout():
     session.pop('username', None)
     return redirect(url_for('loginpage'))
+
+@app.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        
+        email = request.form.get('email')
+        user = userdata.query.filter_by(email=email).first()
+        # Check if email exists in user database
+        if user:
+            # Generate OTP
+            otp = str(randint(100000, 999999))
+
+            # Send OTP to user's email
+            sender_email = "your_email@example.com"
+            receiver_email = email
+            password = "your_email_password"
+            message = f"""\
+            Subject: Reset Password OTP
+            
+            Your OTP to reset your password is {otp}.
+            Please do not share this with anyone.
+            """
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message)
+
+            # Store OTP and email in session
+            session['otp'] = otp
+            session['email'] = email
+
+            # Redirect to enter OTP page
+            return redirect(url_for('enter_otp'))
+
+        # Email does not exist in user database
+        else:
+            return render_template('forgot-password.html', error="Email not found")
+
+    return render_template('forgot-password.html')
+
+
+# Enter OTP page
+@app.route('/enter-otp', methods=['GET', 'POST'])
+def enter_otp():
+    if request.method == 'POST':
+        otp = request.form.get('otp')
+
+        # Check if OTP matches
+        if session['otp'] == otp:
+            return redirect(url_for('reset_password'))
+
+        # OTP does not match
+        else:
+            return render_template('enter-otp.html', error="OTP incorrect")
+
+    return render_template('enter-otp.html')
+
+
+# Reset password page
+@app.route('/reset-password', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == 'POST':
+        email = session['email']
+        password = request.form.get('password')
+        user = userdata.query.filter_by(email=email).first()
+
+        # Update password in user database
+        user.password = password
+        db.session.commit()
+        # Clear session
+        session.pop('otp', None)
+        session.pop('email', None)
+
+        return redirect(url_for('login'))
+    return render_template('reset-password.html')
 
 
 if __name__ == "__main__":

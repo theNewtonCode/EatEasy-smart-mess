@@ -1,4 +1,4 @@
-from flask import Flask,render_template, session, redirect, url_for
+from flask import Flask,render_template, session, redirect, url_for, flash
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
@@ -8,34 +8,34 @@ app = Flask(__name__)
 app.secret_key = 'eateasysmart2023'
 
 @app.route("/")
-def index(name=None):
+def index():
     if 'username' in session and 'name' in session:
         return render_template('index.html', name=session['name'])
     else:
         return redirect(url_for('loginpage'))
 
 @app.route("/about")
-def about(name=None):
+def about():
     if 'username' in session:
         return render_template('about.html', name=session['username'])
     else:
         return redirect(url_for('loginpage'))
 @app.route("/select")
-def select(name=None):
+def select():
     if 'username' in session:
         return render_template('select.html', name=session['username'])
     else:
         return redirect(url_for('loginpage'))
 
 @app.route("/help")
-def help(name=None):
+def help():
     if 'username' in session:
         return render_template('help.html', name=session['username'])
     else:
         return redirect(url_for('loginpage'))
 
 @app.route("/map")
-def map(name=None):
+def map():
     if 'username' in session:
         return render_template('map.html', name=session['username'])
     else:
@@ -54,29 +54,32 @@ class userdata(db.Model):
     password = db.Column(db.String(100), nullable=False)
     rating = db.Column(db.Integer, nullable=False, default=0)
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 @app.route("/loginpage", methods=['GET', 'POST'])
 def loginpage():
     # If the user is already logged in, redirect to the index page
     if 'username' in session:
         return redirect(url_for('index'))
-    log_in = False
+    
     data = {}
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].upper()
         password = request.form['password']
         remember = request.form.get('remember')
         user = userdata.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
-            log_in = True
             session['username'] = username
             session['name'] = user.name
+            # set the session to permanent if "remember" is checked
+            if remember:
+                session.permanent = True
+            flash('Logged in successfully!', 'success')
+            return redirect(url_for('index'))
         else:
-            print("wrong credentials")
-                
-        data = {"username": username, "password": password, "log_in": log_in}
+            flash('Invalid username or password', 'danger')
+    
     return render_template('login.html', data=data)
 
 @app.route("/signup", methods=['GET', 'POST'])
@@ -85,7 +88,7 @@ def signup():
     data = {}
     if request.method =='POST':
         name = request.form['name']
-        username = request.form['username']
+        username = request.form['username'].upper()
         password = request.form['password']
         save_password = request.form.get('save_password')
         if not (10 <= len(username) <= 12):

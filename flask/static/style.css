@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background: linear-gradient(to left, rgb(228, 96, 118) 50%, transparent 50%);
   }
   
   .container {
@@ -21,7 +22,7 @@ body {
   .right {
     width: 50%;
     padding: 50px;
-    background-color: rgb(250, 69, 112);
+    /* background-color: rgb(250, 69, 112); */
     display: flex;
     justify-content: center;
   }
@@ -122,12 +123,13 @@ body {
   }
 
   /* Small screens */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
+  
   .container {
     flex-direction: column;
   }
   nav{
-    width: 100vw;
+    /* width: 100vw; */
     padding: 10px 20px;
   }
   .left, .right {
@@ -159,7 +161,7 @@ body {
   }
 }
 
-/* Medium screens */
+/* Medium screens
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   .left {
     padding: 20px;
@@ -168,6 +170,6 @@ body {
   .right {
     padding: 20px;
   }
-}
+} */
 
   

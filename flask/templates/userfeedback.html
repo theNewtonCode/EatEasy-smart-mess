@@ -11,7 +11,7 @@
     <title>Feedback</title>
     <style>
       body{
-        position: relative;
+        /* position: relative; */
         min-height: 100vh;
   background: linear-gradient(rgb(228, 96, 118) 50%, transparent 50%) no-repeat;
 }
@@ -64,8 +64,11 @@
             <input type="hidden" name="rating" id="rating" value="0">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <button id="submit-btn" type="submit" class="btn btn-primary" >Submit</button>
       </form>
+      <br>
+      <button onclick="window.location.href='/'" class="btn btn-primary" >Return</button>
     </div>
     <img class="icon" src="{{url_for('static', filename='img/logo_eateasy.png')}}" alt="Icon">
     <!-- Optional JavaScript -->
@@ -74,6 +77,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/esm/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
     <script>
+      document.getElementById("submit-btn").addEventListener("click", function() {
+  alert("Rating submitted successfully!");
+});
       $('.star').click(function(){
         var value = $(this).data('value');
         $('#rating').val(value);

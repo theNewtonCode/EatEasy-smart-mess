@@ -10,3 +10,4 @@ broken_images
 db.py
 detail.py
 __pycache__
+instance

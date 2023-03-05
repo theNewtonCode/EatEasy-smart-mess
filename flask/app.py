@@ -3,8 +3,8 @@ import smtplib
 from flask import Flask,render_template, session, redirect, url_for, flash
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select
 from werkzeug.security import generate_password_hash, check_password_hash
+import detail
 
 app = Flask(__name__)
 app.secret_key = 'eateasysmart2023'
@@ -138,13 +138,14 @@ def forgot_password():
         # Check if email exists in user database
         if user:
             # Generate OTP
-            otp = str(randint(100000, 999999))
-
+            otp = str(randint(1000, 2000))
+            ran = "Hello"
+            q = detail.Dog()
             # Send OTP to user's email
-            sender_email = "blackboxeateasy@gmail.com"
+            sender_email = q.mail
             receiver_email = email
-            password = "bRICHANt"
-            message = f"""\
+            password = q.psw
+            message = f"""
             Subject: Reset Password OTP
             
             Your OTP to reset your password is {otp}.
@@ -169,7 +170,7 @@ def forgot_password():
 
 
 # Enter OTP page
-@app.route('/enter-otp', methods=['GET', 'POST'])
+@app.route('/enter_otp', methods=['GET', 'POST'])
 def enter_otp():
     if request.method == 'POST':
         otp = request.form.get('otp')
@@ -180,13 +181,13 @@ def enter_otp():
 
         # OTP does not match
         else:
-            return render_template('enter-otp.html', error="OTP incorrect")
+            return render_template('enter_otp.html', error="OTP incorrect")
 
-    return render_template('enter-otp.html')
+    return render_template('enter_otp.html')
 
 
 # Reset password page
-@app.route('/reset-password', methods=['GET', 'POST'])
+@app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password():
     if request.method == 'POST':
         email = session['email']
@@ -194,14 +195,15 @@ def reset_password():
         user = userdata.query.filter_by(email=email).first()
 
         # Update password in user database
-        user.password = password
+        password_hash = generate_password_hash(password)
+        user.password = password_hash
         db.session.commit()
         # Clear session
         session.pop('otp', None)
         session.pop('email', None)
 
-        return redirect(url_for('login'))
-    return render_template('reset-password.html')
+        return redirect(url_for('loginpage'))
+    return render_template('reset_password.html')
 
 
 if __name__ == "__main__":

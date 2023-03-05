@@ -141,9 +141,9 @@ def forgot_password():
             otp = str(randint(100000, 999999))
 
             # Send OTP to user's email
-            sender_email = "your_email@example.com"
+            sender_email = "blackboxeateasy@gmail.com"
             receiver_email = email
-            password = "your_email_password"
+            password = "bRICHANt"
             message = f"""\
             Subject: Reset Password OTP
             

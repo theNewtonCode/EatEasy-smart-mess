@@ -1,16 +1,43 @@
-{% extends "base.html" %} 
-
-{% block head %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+      rel="stylesheet"/>
 <title>EatEasy - Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link
   rel="stylesheet"
   type="text/css"
-  href="{{url_for('static', filename='style.css')}}"
-/>
-{% endblock %} 
+  href="{{url_for('static', filename='style.css')}}"/>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img
+        src="{{url_for('static', filename='img/logo_eateasy.png')}}"
+        alt="EatEasy Logo"
+      />
+      <h1>EatEasy</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="{{url_for('about')}}">About Us</a></li>
+      <li><a href="{{url_for('help')}}">Help</a></li>
+      <li><a href="{{url_for('userfeedback')}}">Feedback</a></li>
+      {% if logn %}
+      <li><a href="{{url_for('logout')}}">Logout</a></li>
+    {% else %}
+    <li><a href="{{url_for('loginpage')}}">Login</a></li>
+    {% endif %}
 
-{% block body %}
+    </ul>
+  </nav>
 <div class="container">
   <div class="left">
     <main>
@@ -20,11 +47,22 @@
 {% else %}
   <h2>Welcome to EatEasy!</h2>
 {% endif %}
-        <p>
-          Find the most suitable place for you and your gang with just a click
-        </p>
-        <div class="buttons">
-          <a href="{{ url_for('select') }}" class="btn-find">Find</a>
+{% if logn %}
+<p>
+  Find the most suitable place for you and your gang with just a click
+</p>
+{% else %}
+<p>
+  Find the most suitable place for you and your gang with just a click <br>
+  To use all the features please login to your account, or create a new one
+</p>
+{% endif %}
+<div class="buttons">
+{% if logn %}
+<a href="{{ url_for('select') }}" class="btn-find">Find</a>
+{% else %}
+<a href="{{ url_for('loginpage') }}" class="btn-find">Login</a>
+{% endif %}
           <a href="{{ url_for('map') }}" class="btn-messmap">View Map</a>
         </div>
       </div>
@@ -40,4 +78,5 @@
     </div>
   </div>
 </div>
-{% endblock %}
+</body>
+</html>

@@ -12,16 +12,16 @@ app.secret_key = 'eateasysmart2023'
 @app.route("/")
 def index():
     if 'username' in session and 'name' in session:
-        return render_template('index.html', name=session['name'])
+        return render_template('index.html', name=session['name'], logn="yes")
     else:
-        return redirect(url_for('loginpage'))
+        return render_template('index.html', name="Buddy", logn = None)
 
 @app.route("/about")
 def about():
     if 'username' in session:
         return render_template('about.html', name=session['username'])
     else:
-        return redirect(url_for('loginpage'))
+        return render_template('about.html', name="Buddy")
 @app.route("/select")
 def select():
     if 'username' in session:
@@ -41,7 +41,7 @@ def map():
     if 'username' in session:
         return render_template('map.html', name=session['username'])
     else:
-        return redirect(url_for('loginpage'))
+        return render_template('map.html', name="Buddy")
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///eateasyusers.db"

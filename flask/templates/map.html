@@ -1,17 +1,58 @@
 {% extends "base.html" %} {% block head %}
 <title>EatEasy - Map</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{url_for('static', filename='map.css')}}"
-/>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='map.css')}}" />
 {% endblock %} {% block body %}
-<div>
-  <img
-    src="{{url_for('static', filename='img/mess_map.jpeg')}}"
-    alt="Map of your location"
-  />
+<div class="image_slider">
+
+
+  <div class="img-slider">
+    <div class="slide active">
+      <img src="{{url_for('static', filename='img/map_imgs/mess_map.jpeg')}}" alt="">
+      <div class="info">
+
+
+      </div>
+    </div>
+    <div class="slide">
+      <img src="{{url_for('static', filename='img/map_imgs/footballside.jpeg')}}" alt="">
+
+      <div class="info">
+
+
+      </div>
+    </div>
+    <div class="slide">
+      <img src="{{url_for('static', filename='img/map_imgs/hostelside.jpeg')}}" alt="">
+
+      <div class="info">
+
+      </div>
+    </div>
+    <div class="slide">
+      <img src="{{url_for('static', filename='img/map_imgs/hotspot_side.jpeg')}}" alt="">
+
+      <div class="info">
+
+      </div>
+    </div>
+    <div class="slide">
+      <img src="{{url_for('static', filename='img/map_imgs/inside_staircase.jpeg')}}" alt="">
+
+      <div class="info">
+
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="btn active"></div>
+      <div class="btn"></div>
+      <div class="btn"></div>
+      <div class="btn"></div>
+      <div class="btn"></div>
+    </div>
+  </div>
+
 </div>
+<script src="{{url_for('static', filename='map.js')}}"></script>
 
 {% endblock %}

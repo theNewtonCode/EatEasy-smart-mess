@@ -30,12 +30,7 @@
       <li><a href="{{url_for('about')}}">About Us</a></li>
       <li><a href="{{url_for('help')}}">Help</a></li>
       <li><a href="{{url_for('userfeedback')}}">Feedback</a></li>
-      {% if logn %}
       <li><a href="{{url_for('logout')}}">Logout</a></li>
-    {% else %}
-    <li><a href="{{url_for('loginpage')}}">Login</a></li>
-    {% endif %}
-
     </ul>
   </nav>
 <div class="container">
@@ -47,22 +42,11 @@
 {% else %}
   <h2>Welcome to EatEasy!</h2>
 {% endif %}
-{% if logn %}
-<p>
-  Find the most suitable place for you and your gang with just a click
-</p>
-{% else %}
 <p>
   Find the most suitable place for you and your gang with just a click <br>
-  To use all the features please login to your account, or create a new one
 </p>
-{% endif %}
 <div class="buttons">
-{% if logn %}
 <a href="{{ url_for('select') }}" class="btn-find">Find</a>
-{% else %}
-<a href="{{ url_for('loginpage') }}" class="btn-find">Login</a>
-{% endif %}
           <a href="{{ url_for('map') }}" class="btn-messmap">View Map</a>
         </div>
       </div>

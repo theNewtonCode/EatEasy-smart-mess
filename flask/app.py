@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import detail
+from image_process import take_nd_crop, find_max, img_name_count, img_name_nickname_preference, image_names
 
 app = Flask(__name__)
 app.secret_key = 'eateasysmart2023'
@@ -22,10 +23,17 @@ def about():
         return render_template('about.html', name=session['username'])
     else:
         return redirect(url_for('loginpage'))
-@app.route("/select")
+    
+@app.route("/select", methods=['GET', 'POST'])
 def select():
     if 'username' in session:
-        return render_template('select.html', name=session['username'])
+        table = None
+        if request.method == 'POST':
+            num = int(request.form['num-people'])
+            pref = request.form['table-pref']
+            dict1 = take_nd_crop(image_names, img_name_count)
+            table = find_max(dict1, img_name_nickname_preference, pref, num)
+        return render_template('select.html', name=session['username'], table=table)
     else:
         return redirect(url_for('loginpage'))
 

@@ -3,6 +3,11 @@
 {% block head %}
     <title>EatEasy - Find a Table</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style_sel.css')}}">
+    <link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='features.css')}}"
+/>
 {% endblock %}
 
 {% block body %}
@@ -28,7 +33,69 @@
 
       </div>
       {% if table is not none %}
-      <h1> {{ table }}</h1>
+      <div class="containe">
+        <div class="result-box">
+          <div class="result-text"> {{ ans }}</div>
+          <button class="close-button" type="">X</button>
+        </div>
+      </div>
+      <!-- <h1></h1> -->
+      <style>
+        .containe {
+  position: fixed;
+  /* top: 0;
+  left: 0; */
+  height: 600px;
+  width: 1000px;
+
+  background-color: rgba(0, 0, 0, 0.484);
+  /* display: none; */
+  border-radius: 5px;
+}
+
+.result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  height: 450px;
+  width: 800px;
+  padding: auto;
+}
+
+.result-text {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  font-size: 44px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-weight: 700; */
+  /* margin-bottom: 10px; */
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 80px;
+  font-size: 16px;
+  border: none;
+  background-color: red;
+  cursor: pointer;
+}
+
+      </style>
+      <script>
+        var closeBtn = document.querySelector('.close-button');
+        function hideResultBox() {
+  // Hide the result box
+  document.querySelector('.containe').style.display = 'none';
+}
+
+// Add a click event listener to the close button
+closeBtn.addEventListener('click', hideResultBox);
+      </script>
     {% endif %}
     </div>
 

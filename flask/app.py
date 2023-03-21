@@ -28,6 +28,7 @@ def about():
     
 @app.route("/select", methods=['GET', 'POST'])
 def select():
+    ans = None
     # if 'username' in session:
     #     table = None
     #     if request.method == 'POST':
@@ -39,7 +40,7 @@ def select():
     # else:
     #     return redirect(url_for('loginpage'))
     if 'username' in session:
-        ans = ""
+        
         if request.method == 'POST':
             cctv.get_image()
             num = int(request.form['num-people'])

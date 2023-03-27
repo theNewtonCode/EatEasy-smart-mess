@@ -50,7 +50,10 @@ def select():
                 ans = "Not enough place in either of the sides"
                 print(list)
             else:
-                ans = str+" has enough space for you!"
+                if str == "LeftSide":
+                    ans = "lab_map/lab_map_left.png"
+                else:
+                    ans = "lab_map/lab_map_right.png"
                 print(list)
             # table = find_max(dict1, img_name_nickname_preference, pref, num)
         return render_template('select.html', name=session['username'], ans=ans)

@@ -22,13 +22,16 @@ def object_detection_with_bounding_boxes(filename, model="yolov4-tiny", confiden
     for l, c in zip(label, conf):
         if l == "person":
             count +=1
-
+    output_image = draw_bbox(img, bbox, label, conf)
+    outimg = filename.split(".jpg")[0]
+    # print(outimg)
+    cv2.imwrite(f"{outimg}.jpg", output_image)
     # print(count)
     return count
     # print( count)
 
     # Create a new image that includes the bounding boxes
-    # output_image = draw_bbox(img, bbox, label, conf)
+    # 
     # cv2.imshow('', output_image)
     # cv2.waitKey(0)
 

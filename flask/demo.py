@@ -33,7 +33,8 @@ def crop_trapezium(image_path, trapezium_coords):
 # img_name_nickname_preference = {"hots_1":["Hotspot Entry Side", "Hotspot"], "hots_2":["Hotspot Middle Side", "Hotspot"]}
 # counter_name_count = {}
 
-image_names = ["labroom.jpg"]
+image_names = ["labroom.jpg", "labroom2.jpg"]
+cams_url = [1, 2]
 
 # img_name_count.["host_1"] = 
 # print(img_name_count.get("host_1")[1])
@@ -44,6 +45,7 @@ image_names = ["labroom.jpg"]
 # Define the path to the original image file
 def take_nd_crop(listfimgs):
     numlist = []
+    # numdict = {"Lab 1 Left side": 0, "Lab 1 Right side": 0,"Lab 2 Left side": 0, "Lab 2 Right side": 0,}
     for f in listfimgs:
         original_image_path = f
         # Open the image using Pillow
@@ -84,10 +86,21 @@ def take_nd_crop(listfimgs):
             numlist.append(16-num_people)
 
     # print(img_name_count)
-    if numlist[0]==max(numlist):
-        return "LeftSide", max(numlist), numlist
+    max_value = max(numlist)
+
+    if max_value == numlist[0]:
+        return "LeftSide of Lab1", max_value, numlist
+    elif max_value == numlist[1]:
+        return "RightSide of Lab1", max_value, numlist
+    elif max_value == numlist[2]:
+        return "LeftSide of Lab2", max_value, numlist
     else:
-        return "RightSide", max(numlist), numlist
+        return "RightSide of Lab2", max_value, numlist
+    
+    # if numlist[0]==max(numlist):
+    #     return "LeftSide", max(numlist), numlist
+    # else:
+    #     return "RightSide", max(numlist), numlist
     # return "leftside" if numlist[0]==max(numlist) else "rightside", 16-max(numlist)
 
 take_nd_crop(image_names)

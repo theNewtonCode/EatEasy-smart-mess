@@ -42,7 +42,9 @@ def select():
     if 'username' in session:
         
         if request.method == 'POST':
-            cctv.get_image()
+            urls = ["1", "2"]
+            cctv.get_image(urls[0], "Labroom1")
+            cctv.get_image(urls[1], "Labroom2")
             num = int(request.form['num-people'])
             # pref = request.form['table-pref']
             str, amt, list = take_nd_crop(image_names)
@@ -50,10 +52,10 @@ def select():
                 ans = "Not enough place in either of the sides"
                 print(list)
             else:
-                if str == "LeftSide":
-                    ans = "lab_map/lab_map_left.png"
+                if "LeftSide" in str:
+                    ans = ["lab_map/lab_map_left.png", str]
                 else:
-                    ans = "lab_map/lab_map_right.png"
+                    ans = ["lab_map/lab_map_right.png", str]
                 print(list)
             # table = find_max(dict1, img_name_nickname_preference, pref, num)
         return render_template('select.html', name=session['username'], ans=ans)

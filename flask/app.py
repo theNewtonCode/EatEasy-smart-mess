@@ -9,6 +9,7 @@ import detail
 from demo import take_nd_crop, image_names
 import cctv
 
+
 app = Flask(__name__)
 app.secret_key = 'eateasysmart2023'
 
@@ -42,20 +43,20 @@ def select():
     if 'username' in session:
         
         if request.method == 'POST':
-            urls = ["1", "2"]
-            cctv.get_image(urls[0], "Labroom1")
-            cctv.get_image(urls[1], "Labroom2")
+            urls = ["http://10.12.46.193:8080/shot.jpg", "http://10.12.34.208:8080/shot.jpg"]
+            cctv.get_image(urls[0], "labroom1")
+            cctv.get_image(urls[1], "labroom2")
             num = int(request.form['num-people'])
             # pref = request.form['table-pref']
-            str, amt, list = take_nd_crop(image_names)
+            str, amt, numlist = take_nd_crop(image_names)
             if num>amt:
                 ans = "Not enough place in either of the sides"
                 print(list)
             else:
                 if "LeftSide" in str:
-                    ans = ["lab_map/lab_map_left.png", str]
+                    ans = ["lab_map/lab_map_left.png", str, numlist]
                 else:
-                    ans = ["lab_map/lab_map_right.png", str]
+                    ans = ["lab_map/lab_map_right.png", str, numlist]
                 print(list)
             # table = find_max(dict1, img_name_nickname_preference, pref, num)
         return render_template('select.html', name=session['username'], ans=ans)

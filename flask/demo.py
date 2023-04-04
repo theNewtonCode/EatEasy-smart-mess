@@ -33,8 +33,8 @@ def crop_trapezium(image_path, trapezium_coords):
 # img_name_nickname_preference = {"hots_1":["Hotspot Entry Side", "Hotspot"], "hots_2":["Hotspot Middle Side", "Hotspot"]}
 # counter_name_count = {}
 
-image_names = ["labroom.jpg", "labroom2.jpg"]
-cams_url = [1, 2]
+image_names = ["labroom1.jpg", "labroom2.jpg"]
+# cams_url = [1, 2]
 
 # img_name_count.["host_1"] = 
 # print(img_name_count.get("host_1")[1])

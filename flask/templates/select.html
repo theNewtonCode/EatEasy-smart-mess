@@ -37,8 +37,8 @@
       </form>
     </div>
     {% if ans is not none %}
-    <div class="containe">
-      <h1>You can sit here!</h1>
+    <!-- <div class="containe">
+      <h1>You can sit at {{ ans[1] }}</h1>
       <div class="result-box">
         <img src="../static/img/{{ans[0]}}" alt="" srcset="" />
         <button class="close-button" type="">X</button>
@@ -100,7 +100,67 @@
 
       // Add a click event listener to the close button
       closeBtn.addEventListener("click", hideResultBox);
-    </script>
+    </script> -->
+</head>
+<body>
+	<div class="box-container">
+		<div class="box-heading">You can sit at {{ ans[1] }}</div>
+		<img class="box-image" src="../static/img/{{ans[0]}}" alt="Mess Map">
+		<div class="box-buttons">
+			<button class="box-density-button">See Density</button>
+			<button class="box-close-button">Back</button>
+		</div>
+		<table class="density-table">
+			<thead>
+				<tr>
+					<th>Area</th>
+					<th>Capacity</th>
+					<th>Empty</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>LeftSide L1</td>
+          <td>16</td>
+          <td>{{ans[2][0]}}</td>
+
+				</tr>
+				<tr>
+					<td>RightSide L1</td>
+					<td>16</td>
+          <td>{{ans[2][1]}}</td>
+				</tr>
+				<tr>
+					<td>LeftSide L2</td>
+					<td>16</td>
+          <td>{{ans[2][2]}}</td>
+				</tr>
+				<tr>
+					<td>RightSide L2</td>
+					<td>16</td>
+          <td>{{ans[2][3]}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		var box = document.querySelector(".box-container");
+		var closeButton = document.querySelector(".box-close-button");
+		var densityButton = document.querySelector(".box-density-button");
+		var densityTable = document.querySelector(".density-table");
+    function closeBox() {
+		box.style.display = "none";
+	}
+
+	function showDensityTable() {
+		densityTable.style.display = "block";
+	}
+
+	closeButton.addEventListener("click", closeBox);
+	densityButton.addEventListener("click", showDensityTable);
+</script>
+
+
     {% endif %}
   </div>
 

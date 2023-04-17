@@ -28,11 +28,5 @@ def object_detection_with_bounding_boxes(filename, model="yolov4-tiny", confiden
     cv2.imwrite(f"{outimg}.jpg", output_image)
     # print(count)
     return count
-    # print( count)
 
-    # Create a new image that includes the bounding boxes
-    # 
-    # cv2.imshow('', output_image)
-    # cv2.waitKey(0)
-
-# object_detection_with_bounding_boxes(r"C:\Users\Lenovo\OneDrive\Desktop\EatEasyProject\broken_images\crop_2.jpg")
+# print(object_detection_with_bounding_boxes(r"root_path\empty_counter.jpg"))

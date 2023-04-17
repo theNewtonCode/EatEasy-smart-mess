@@ -4,9 +4,10 @@ from flask import Flask,render_template, session, redirect, url_for, flash
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-import detail
+# import detail
 from image_process import take_nd_crop, find_max, img_name_count, img_name_nickname_preference, image_names, get_ratio_list, rows
 import cctv
+from counter import find_counter
 
 
 app = Flask(__name__)
@@ -29,6 +30,7 @@ def about():
 @app.route("/select", methods=['GET', 'POST'])
 def select():
     ans = None
+    ans_counter = None
     if 'username' in session:
         if request.method == 'POST':
             if 'tablePost' in request.form:
@@ -70,9 +72,10 @@ def select():
                     ans  = ["mess_map/InsideStairs_TV_Side.png", cansitOrnot, table, rows, densitylist]
                 else:
                     ans  = ["mess_map/No_Place.png", "Come Later", "Not enough space for your group", rows, densitylist]
-            return render_template('select.html', name=session['username'], ans=ans)
-        # elif 'counterPost' in request.form:
-
+            elif 'counterPost' in request.form:
+                emptycounter = find_counter()
+                ans_counter = [f"mess_map/{emptycounter}.png", "The Most Vacant Counter is", emptycounter]
+        return render_template('select.html', name=session['username'], ans=ans, ans_counter=ans_counter)
     else:
         return redirect(url_for('loginpage'))
     #for lab demo-
@@ -210,7 +213,8 @@ def forgot_password():
             # Generate OTP
             otp = str(randint(1000, 2000))
             ran = "Hello"
-            q = detail.Dog()
+            q = "dog"
+            # q = detail.Dog()
             # Send OTP to user's email
             sender_email = q.mail
             receiver_email = email

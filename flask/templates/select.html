@@ -104,7 +104,7 @@
 </head>
 <body>
 	<div class="box-container">
-		<div class="box-heading">You can sit at {{ ans[1] }}</div>
+		<div class="box-heading">{{ ans[1] }} {{ ans[2] }}</div>
 		<img class="box-image" src="../static/img/{{ans[0]}}" alt="Mess Map">
 		<div class="box-buttons">
 			<button class="box-density-button">See Density</button>
@@ -114,32 +114,16 @@
 			<thead>
 				<tr>
 					<th>Area</th>
-					<th>Capacity</th>
-					<th>Empty</th>
+					<th>Vacancy</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>LeftSide L1</td>
-          <td>16</td>
-          <td>{{ans[2][0]}}</td>
-
-				</tr>
-				<tr>
-					<td>RightSide L1</td>
-					<td>16</td>
-          <td>{{ans[2][1]}}</td>
-				</tr>
-				<tr>
-					<td>LeftSide L2</td>
-					<td>16</td>
-          <td>{{ans[2][2]}}</td>
-				</tr>
-				<tr>
-					<td>RightSide L2</td>
-					<td>16</td>
-          <td>{{ans[2][3]}}</td>
-				</tr>
+        {% for i in range(12) %}
+        <tr>
+          <td>{{ans[3][i]}}</td>
+          <td>{{ans[4][i]}}</td>
+        </tr>
+        {% endfor %}
 			</tbody>
 		</table>
 	</div>

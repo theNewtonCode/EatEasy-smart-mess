@@ -32,7 +32,7 @@ def crop_trapezium(image_path, trapezium_coords):
 img_name_nickname_preference = {"hots_1":["Hotspot Entry Side", "Hotspot"], "hots_2":["Hotspot Middle Side", "Hotspot"], "hots_3":["Hotspot Counter Side", "Hotspot"], "host_1":["Hostel Entry Side", "Hostel"], "host_2":["Hostel Middle Side", "Hostel"], "host_3":["Hostel Counter Side", "Hostel"], "foot_1":["Football Entry Side", "Football"], "foot_2":["Football Middle Side", "Football"], "foot_3":["Football Counter Side", "Football"], "newmessup_1":["InsideStairs Counter Side", "InsideStairs"], "newmessup_2":["InsideStairs Middle Side", "InsideStairs"], "newmessup_3":["InsideStairs TV Side", "InsideStairs"]}
 img_name_count = {"hots_1":[60, 0], "hots_2":[100, 0], "hots_3":[100, 0], "host_1":[50, 0], "host_2":[50, 0], "host_3":[50, 0], "foot_1":[50, 0], "foot_2":[50, 0], "foot_3":[50, 0], "newmessup_1":[30, 0], "newmessup_2":[30, 0], "newmessup_3":[30, 0]}
 # counter_name_count = {}
-
+rows = ['Hotspot Entry Side', 'Hotspot Middle Side', 'Hotspot Counter Side', 'Hostel Entry Side', 'Hostel Middle Side', 'Hostel Counter Side', 'Football Entry Side', 'Football Middle Side', 'Football Counter Side', 'InsideStairs Counter Side', 'InsideStairs Middle Side', 'InsideStairs TV Side']
 image_names = ["hots.jpeg", "host.jpeg", "foot.jpeg", "newmessup.jpeg"]
 
 # img_name_count.["host_1"] = 
@@ -100,7 +100,7 @@ def find_max(d1, d2, nickname, value):
     # Find the first name that satisfies the condition
     for name, max_val, live_val in name_values:
         if max_val - live_val >= value:
-            return d2[name][0]
+            return "Yes you can sit here", d2[name][0]
     
     # If no name satisfies the condition, find the first name with max value and live value greater than live_val
     for name, max_val, live_val in name_vals:
@@ -108,6 +108,13 @@ def find_max(d1, d2, nickname, value):
             return "Your Preferred area is full", d2[name][0]
     
     # If no name satisfies any condition, return None
-    return None
+    return None, None
 
-print(find_max(img_name_count, img_name_nickname_preference, "Football", 6))
+def get_ratio_list(dict1):
+    ratio_list = []
+    for key, value in dict1.items():
+        ratio = (value[0] - value[1]) / value[0] * 100
+        ratio_list.append(ratio)
+    return ratio_list
+
+# print(find_max(img_name_count, img_name_nickname_preference, "Football", 6))

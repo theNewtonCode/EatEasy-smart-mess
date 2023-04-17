@@ -5,8 +5,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import detail
-# from image_process import take_nd_crop, find_max, img_name_count, img_name_nickname_preference, image_names
-from demo import take_nd_crop, image_names
+from image_process import take_nd_crop, find_max, img_name_count, img_name_nickname_preference, image_names, get_ratio_list, rows
 import cctv
 
 
@@ -30,38 +29,75 @@ def about():
 @app.route("/select", methods=['GET', 'POST'])
 def select():
     ans = None
-    # if 'username' in session:
-    #     table = None
-    #     if request.method == 'POST':
-    #         num = int(request.form['num-people'])
-    #         pref = request.form['table-pref']
-    #         dict1 = take_nd_crop(image_names, img_name_count)
-    #         table = find_max(dict1, img_name_nickname_preference, pref, num)
-    #     return render_template('select.html', name=session['username'], table=table)
-    # else:
-    #     return redirect(url_for('loginpage'))
     if 'username' in session:
-        
         if request.method == 'POST':
-            urls = ["http://10.12.46.193:8080/shot.jpg", "http://10.12.34.208:8080/shot.jpg"]
-            cctv.get_image(urls[0], "labroom1")
-            cctv.get_image(urls[1], "labroom2")
-            num = int(request.form['num-people'])
-            # pref = request.form['table-pref']
-            str, amt, numlist = take_nd_crop(image_names)
-            if num>amt:
-                ans = "Not enough place in either of the sides"
-                print(list)
-            else:
-                if "LeftSide" in str:
-                    ans = ["lab_map/lab_map_left.png", str, numlist]
+            if 'tablePost' in request.form:
+                # urls = ["http://10.12.46.193:8080/shot.jpg", "http://10.12.34.208:8080/shot.jpg", "foot/shot.jpg", "newmessup/shot.jpg"]
+                # cctv.get_image(urls[0], "hots")
+                # cctv.get_image(urls[1], "host")
+                # cctv.get_image(urls[2], "foot")
+                # cctv.get_image(urls[3], "newmessup")
+                num = int(request.form['num-people'])
+                pref = request.form['table-pref']
+                dict1 = take_nd_crop(image_names, img_name_count)
+                densitylist = get_ratio_list(dict1)
+                cansitOrnot, table = find_max(dict1, img_name_nickname_preference, pref, num)
+                #ans has the values like the image map, ifprefsideisemptyenoughornot, the most suitable place, the rows list and their densities
+                # ans  = ["lab_map/lab_map_right.png", cansitOrnot, table, rows, densitylist]
+                if "Hotspot Entry Side" == table:
+                    ans  = ["mess_map/Hotspot_Entry_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Hotspot Middle Side" == table:
+                    ans  = ["mess_map/Hotspot_Middle_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Hotspot Counter Side" == table:
+                    ans  = ["mess_map/Hotspot_Counter_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Hostel Entry Side" == table:
+                    ans  = ["mess_map/Hostel_Entry_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Hostel Middle Side" == table:
+                    ans  = ["mess_map/Hostel_Middle_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Hostel Counter Side" == table:
+                    ans  = ["mess_map/Hostel_Counter_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Football Entry Side" == table:
+                    ans  = ["mess_map/Football_Entry_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Football Middle Side" == table:
+                    ans  = ["mess_map/Football_Middle_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "Football Counter Side" == table:
+                    ans  = ["mess_map/Football_Counter_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "InsideStairs Counter Side" == table:
+                    ans  = ["mess_map/InsideStairs_Counter_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "InsideStairs Middle Side" == table:
+                    ans  = ["mess_map/InsideStairs_Middle_Side.png", cansitOrnot, table, rows, densitylist]
+                elif "InsideStairs TV Side" == table:
+                    ans  = ["mess_map/InsideStairs_TV_Side.png", cansitOrnot, table, rows, densitylist]
                 else:
-                    ans = ["lab_map/lab_map_right.png", str, numlist]
-                print(list)
-            # table = find_max(dict1, img_name_nickname_preference, pref, num)
-        return render_template('select.html', name=session['username'], ans=ans)
+                    ans  = ["mess_map/No_Place.png", "Come Later", "Not enough space for your group", rows, densitylist]
+            return render_template('select.html', name=session['username'], ans=ans)
+        # elif 'counterPost' in request.form:
+
     else:
         return redirect(url_for('loginpage'))
+    #for lab demo-
+    # if 'username' in session:
+        
+    #     if request.method == 'POST':
+            # urls = ["http://10.12.46.193:8080/shot.jpg", "http://10.12.34.208:8080/shot.jpg"]
+            # cctv.get_image(urls[0], "labroom1")
+            # cctv.get_image(urls[1], "labroom2")
+    #         num = int(request.form['num-people'])
+    #         # pref = request.form['table-pref']
+    #         str, amt, numlist = take_nd_crop(image_names)
+    #         if num>amt:
+    #             ans = "Not enough place in either of the sides"
+    #             print(list)
+    #         else:
+    #             if "LeftSide" in str:
+    #                 ans = ["lab_map/lab_map_left.png", str, numlist]
+    #             else:
+                    # ans = ["lab_map/lab_map_right.png", str, numlist]
+    #             print(list)
+    #         # table = find_max(dict1, img_name_nickname_preference, pref, num)
+    #     return render_template('select.html', name=session['username'], ans=ans)
+    # else:
+    #     return redirect(url_for('loginpage'))
 
 @app.route("/help")
 def help():

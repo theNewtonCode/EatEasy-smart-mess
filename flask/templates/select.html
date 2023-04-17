@@ -16,7 +16,7 @@
     <div class="form-container">
       <h2>Let's Find...</h2>
       <form method="post">
-        <button class="btn-counter" type="submit">Find Counter</button><br />
+        <button class="btn-counter" type="submit" name="counterPost">Find Counter</button><br />
         <label for="num-people">Number of People:</label>
         <input
           type="number"
@@ -33,78 +33,14 @@
           <option value="InsideStairs">Newmess</option>
         </select>
 
-        <button class="btn-find" type="submit">Find Table</button>
+        <button class="btn-find" type="submit" name="tablePost">Find Table</button>
       </form>
     </div>
     {% if ans is not none %}
-    <!-- <div class="containe">
-      <h1>You can sit at {{ ans[1] }}</h1>
-      <div class="result-box">
-        <img src="../static/img/{{ans[0]}}" alt="" srcset="" />
-        <button class="close-button" type="">X</button>
-      </div>
-    </div>
-    <style>
-      .containe {
-        position: fixed;
-        height: 600px;
-        width: 1000px;
-        background-color: rgba(0, 0, 0, 0.484);
-        border-radius: 5px;
-      }
-      .containe h1{
-        text-align: center;
-        color: white;
-      }
-      .containe img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-      .result-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgb(255, 255, 255);
-        height: 450px;
-        width: 800px;
-        padding: auto;
-      }
-
-      .result-text {
-        position: absolute;
-        top: 50%;
-        left: 20%;
-        font-size: 44px;
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-      }
-
-      .close-button {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        width: 80px;
-        font-size: 16px;
-        border: none;
-        background-color: red;
-        cursor: pointer;
-      }
-    </style>
-    <script>
-      var closeBtn = document.querySelector(".close-button");
-      function hideResultBox() {
-        // Hide the result box
-        document.querySelector(".containe").style.display = "none";
-      }
-
-      // Add a click event listener to the close button
-      closeBtn.addEventListener("click", hideResultBox);
-    </script> -->
 </head>
 <body>
 	<div class="box-container">
-		<div class="box-heading">You can sit at {{ ans[1] }}</div>
+		<div class="box-heading">{{ ans[1] }} {{ ans[2] }}</div>
 		<img class="box-image" src="../static/img/{{ans[0]}}" alt="Mess Map">
 		<div class="box-buttons">
 			<button class="box-density-button">See Density</button>
@@ -114,32 +50,16 @@
 			<thead>
 				<tr>
 					<th>Area</th>
-					<th>Capacity</th>
-					<th>Empty</th>
+					<th>Vacancy</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>LeftSide L1</td>
-          <td>16</td>
-          <td>{{ans[2][0]}}</td>
-
-				</tr>
-				<tr>
-					<td>RightSide L1</td>
-					<td>16</td>
-          <td>{{ans[2][1]}}</td>
-				</tr>
-				<tr>
-					<td>LeftSide L2</td>
-					<td>16</td>
-          <td>{{ans[2][2]}}</td>
-				</tr>
-				<tr>
-					<td>RightSide L2</td>
-					<td>16</td>
-          <td>{{ans[2][3]}}</td>
-				</tr>
+        {% for i in range(12) %}
+        <tr>
+          <td>{{ans[3][i]}}</td>
+          <td>{{ans[4][i]}}</td>
+        </tr>
+        {% endfor %}
 			</tbody>
 		</table>
 	</div>
@@ -158,6 +78,28 @@
 
 	closeButton.addEventListener("click", closeBox);
 	densityButton.addEventListener("click", showDensityTable);
+</script>
+
+
+    {% endif %}
+    {% if ans_counter is not none %}
+</head>
+<body>
+	<div class="box-container">
+		<div class="box-heading">{{ ans_counter[1] }} {{ ans_counter[2] }}</div>
+		<img class="box-image" src="../static/img/{{ans_counter[0]}}" alt="Mess Map">
+		<div class="box-buttons">
+			<button class="box-close-button">Back</button>
+		</div>
+	</div>
+	<script>
+		var box = document.querySelector(".box-container");
+		var closeButton = document.querySelector(".box-close-button");
+    function closeBox() {
+		box.style.display = "none";
+	}
+
+	closeButton.addEventListener("click", closeBox);
 </script>
 
 

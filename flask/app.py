@@ -108,6 +108,13 @@ def help():
         return render_template('help.html', name=session['username'])
     else:
         return redirect(url_for('loginpage'))
+    
+
+
+@app.route('/terms-of-service')
+def terms_of_service():
+    return render_template('terms_conditions.html')
+
 
 @app.route("/map")
 def map():

@@ -1,0 +1,125 @@
+{% extends "base.html" %} {% block head %}
+    <title>Terms of Service</title>
+    <link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='features.css')}}"
+/>
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(to left, rgb(228, 96, 118) 50%, transparent 50%);
+
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    margin-top: 1rem;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #ccc;
+  }
+    footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    p.footer-text {
+    font-size: 0.9rem;
+    }
+    </style>
+  </head>
+  {% endblock %} {% block body %}
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p>
+        Welcome to our EatEasy. If you continue to browse and use this website,
+        you are agreeing to comply with and be bound by the following terms and
+        conditions of use, which together with our privacy policy govern our
+        relationship with you in relation to this website. If you disagree with
+        any part of these terms and conditions, please do not use our website.
+      </p>
+
+      <h2>1. General</h2>
+      <p>The use of this website is subject to the following terms of use:</p>
+      <ul>
+        <li>
+          The content of the pages of this website is for your general
+          information and use only. It is subject to change without notice.
+        </li>
+        <li>
+          This website does not collect any data except the data provided to us by the user itself.
+        </li>
+        <li>
+          Neither we nor any third parties provide any warranty or guarantee as
+          to the accuracy, timeliness, performance, completeness or suitability
+          of the information and materials found or offered on this website for
+          any particular purpose. You acknowledge that such information and
+          materials may contain inaccuracies or errors and we expressly exclude
+          liability for any such inaccuracies or errors to the fullest extent
+          permitted by law.
+        </li>
+        <li>
+          Your use of any information or materials on this website is entirely
+          at your own risk, for which we shall not be liable. It shall be your
+          own responsibility to ensure that any services or
+          information available through this website meet your specific
+          requirements.
+        </li>
+        <li>
+          All trademarks reproduced in this website, which are not the property
+          of, or licensed to the operator, are acknowledged on the website.
+        </li>
+        <li>
+          Unauthorized use of this website may give rise to a claim for damages
+          and/or be a criminal offence.
+        </li>
+        <li>
+          Your use of this website and any dispute arising out of such use of
+          the website is subject to the laws of India
+        </li>
+      </ul>
+
+      <h2>2. Disclaimer</h2>
+      <p>
+        The information contained in this website is for general information
+        purposes only. The information is provided by EatEasy and
+        while we endeavor to keep the information up to date and correct, we
+        make no representations or warranties of any kind, express or implied,
+        about the completeness, accuracy, reliability, suitability or
+        availability with respect to the website or the information, products,
+        services, or related graphics contained on the website for any purpose.
+      </p>
+      <p>
+        Any reliance you place on such information is therefore strictly at your
+        own risk. In no event will we be liable for any loss or damage including
+        without limitation, indirect or consequential loss or damage, or any
+        loss or damage whatsoever arising from loss of data or profits arising
+        out of, or in connection with, the use of this website.
+      </p>
+      <h2>4. Modifications to Terms of Service</h2>
+      <p>
+        We may revise and update these Terms of Service from time to time in our
+        sole discretion. All changes are effective immediately when we post
+        them, and apply to all access to and use of the website thereafter. Your
+        continued use of the website following the posting of revised Terms of
+        Service means that you accept and agree to the changes. You are expected
+        to check this page from time to time so you are aware of any changes, as
+        they are binding on you.
+      </p>
+
+      <h2>5. Contact Information</h2>
+      <p>
+        If you have any questions about these Terms of Service, please contact
+        us at <a href="mailto:support@eateasy.com">support@EatEasy.com</a> or by calling <a href="tel:18005551234">+91 723XXXXXXX</a>.
+      </p>
+
+      <p>24 April 2023</p>
+    </div>
+    {% endblock %}

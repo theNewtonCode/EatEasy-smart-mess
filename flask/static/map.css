@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to left, rgb(228, 96, 118) 50%, transparent 50%);
+  background: #dfdddd;;
 
 }
 
@@ -22,7 +22,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #dfdddd;
 }
 
 .img-slider {
@@ -181,4 +180,18 @@ body {
   .img-slider .navigation {
     bottom: 10px;
   }
+}
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+p.footer-text {
+  font-size: 0.9rem;
 }

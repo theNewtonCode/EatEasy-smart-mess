@@ -1,11 +1,6 @@
 from PIL import Image
-import os
 from testpy import object_detection_with_bounding_boxes as count_people
 from cctv import get_image
-import os
-import cv2
-import numpy as np
-
 
 def find_counter():
     

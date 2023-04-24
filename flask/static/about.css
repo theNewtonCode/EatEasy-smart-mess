@@ -33,7 +33,7 @@ body {
   
   p {
     line-height: 1.5;
-    color: #555;
+    /* color: #555; */
     font-size: 1.1rem;
   }
   

@@ -133,4 +133,16 @@ body {
   }
 } */
 
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+p.footer-text {
+  font-size: 0.9rem;
+}
   

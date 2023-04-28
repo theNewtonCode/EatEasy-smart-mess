@@ -1,31 +1,116 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block head %}
+<title>EatEasy - Find a Table</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static',filename='style_sel.css')}}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('static', filename='features.css')}}"
+/>
+{% endblock %} {% block body %}
+<main>
+  <div class="container">
+    <div class="form-container">
+      <h2>Let's Find...</h2>
+      <form method="post">
+        <button class="btn-counter" type="submit" name="counterPost">Find Counter</button><br />
+        <label for="num-people">Number of People:</label>
+        <input
+          type="number"
+          id="num-people"
+          name="num-people"
+          placeholder="Enter number of people"
+          required
+        />
 
-{% block head %}
-    <title>EatEasy - Find a Table</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style_sel.css')}}">
-{% endblock %}
+        <label for="table-pref">Table Preference:</label>
+        <select id="table-pref" name="table-pref">
+          <option value="Hotspot">Hots</option>
+          <option value="Football">Football</option>
+          <option value="Hostel">Hostek</option>
+          <option value="InsideStairs">Newmess</option>
+        </select>
 
-{% block body %}
-    <main>
-    <div class="container">
-      <div class="form-container">
-        <h2>Let's Find...</h2>
-        <form>
-            <button class="btn-counter" type="submit">Find Counter</button><br>
-          <label for="num-people">Number of People:</label>
-          <input type="number" id="num-people" name="num-people" placeholder="Enter number of people">
-          
-          <label for="table-pref">Table Preference:</label>
-          <select id="table-pref" name="table-pref">
-            <option value="none">None</option>
-            <option value="window">Window</option>
-            <option value="outdoor">Outdoor</option>
-            <option value="private">Private</option>
-          </select>
-          
-          <button class="btn-find" type="submit">Find Table</button>
-        </form>
-      </div>
+        <button class="btn-find" type="submit" name="tablePost">Find Table</button>
+      </form>
     </div>
-  </main>
-  {% endblock %}
+    {% if ans is not none %}
+</head>
+<body>
+	<div class="box-container">
+		<div class="box-heading">{{ ans[1] }} {{ ans[2] }}</div>
+		<img class="box-image" src="../static/img/{{ans[0]}}" alt="Mess Map">
+		<div class="box-buttons">
+			<button class="box-density-button">See Density</button>
+			<button class="box-close-button">Back</button>
+		</div>
+		<table class="density-table">
+			<thead>
+				<tr>
+					<th>Area</th>
+					<th>Vacancy</th>
+				</tr>
+			</thead>
+			<tbody>
+        {% for i in range(12) %}
+        <tr>
+          <td>{{ans[3][i]}}</td>
+          <td>{{ans[4][i]}}</td>
+        </tr>
+        {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<script>
+		var box = document.querySelector(".box-container");
+		var closeButton = document.querySelector(".box-close-button");
+		var densityButton = document.querySelector(".box-density-button");
+		var densityTable = document.querySelector(".density-table");
+    function closeBox() {
+		box.style.display = "none";
+	}
+
+	function showDensityTable() {
+		densityTable.style.display = "block";
+	}
+
+	closeButton.addEventListener("click", closeBox);
+	densityButton.addEventListener("click", showDensityTable);
+</script>
+
+
+    {% endif %}
+    {% if ans_counter is not none %}
+</head>
+<body>
+	<div class="box-container">
+		<div class="box-heading">{{ ans_counter[1] }} {{ ans_counter[2] }}</div>
+		<img class="box-image" src="../static/img/{{ans_counter[0]}}" alt="Mess Map">
+		<div class="box-buttons">
+			<button class="box-close-button">Back</button>
+		</div>
+	</div>
+	<script>
+		var box = document.querySelector(".box-container");
+		var closeButton = document.querySelector(".box-close-button");
+    function closeBox() {
+		box.style.display = "none";
+	}
+
+	closeButton.addEventListener("click", closeBox);
+</script>
+
+
+    {% endif %}
+  </div>
+
+  <style>
+    h1 {
+      color: white;
+    }
+  </style>
+</main>
+{% endblock %}

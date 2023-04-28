@@ -6,48 +6,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
   }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-    /* background-image: linear-gradient(to right, #ffffff, #e3feff, #a5ffff, #8dffe2, #c6ff91); */
 
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  nav ul {
-    display: flex;
-  }
-  
-  nav li {
-    list-style: none;
-    margin-left: 20px;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: #ff69b4;
-  }
   
   .container {
     display: flex;
@@ -99,3 +58,85 @@ button:hover{
     border-radius: 5px;
     /* border: none;}   */
   }
+
+		.box-container {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #f5f5f5;
+			padding: 20px;
+			box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
+			border-radius: 5px;
+			z-index: 5;
+		}
+
+		.box-heading {
+			text-align: center;
+			font-size: 26px;
+			margin-bottom: 10px;
+      font-weight: bolder;
+		}
+
+		.box-image {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
+			max-height: 300px;
+			margin-bottom: 10px;
+		}
+
+		.box-buttons {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 10px;
+		}
+
+		.box-close-button {
+			margin-left: 30px;
+			background-color: #ff0000;
+			color: #fff;
+			padding: 5px 10px;
+			border: none;
+			border-radius: 30px;
+			cursor: pointer;
+		}
+
+		.density-table {
+			display: none;
+			margin-top: 20px;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		.density-table td, .density-table th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+
+		.density-table th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: rgb(125, 255, 60);
+			color: white;
+		}
+
+		.density-table tr:nth-child(even){background-color: #f2f2f2;}
+
+
+
+
+		footer {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 20px;
+			margin-top: 50px;
+			box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+		  }
+		  
+		  p.footer-text {
+			font-size: 0.9rem;
+		  }

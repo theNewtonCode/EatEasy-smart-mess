@@ -35,15 +35,6 @@ The web application's goal is to simplify the process of locating the least crow
 
 The project combines HTML, CSS, JavaScript, and Flask to create a web application. CCTV data is processed in real-time, and YOLO v4 calculates crowd density. The frontend features a user-friendly interface with login, registration, and interactive functionalities.
 
-### Design Diagrams
-
-#### Architecture Diagram
-
-![Architecture Diagram](./docs/architecture_diagram.png)
-
-#### Flow Diagram
-
-![Flow Diagram](./docs/flow_diagram.png)
 
 ## User Interface
 
